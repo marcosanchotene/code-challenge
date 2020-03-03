@@ -2,7 +2,7 @@
 
 ### What is this repository for? ###
 
-* This repository is for a code challenge required for the QC Test Automation Engineer position recruitment process at Kneat.
+* This repository is for a test automation code challenge.
 * The challenge is to write a set of Selenium tests for the new 'Spa and wellness centre' and 'Star rating' filters options of Booking.com, including framework to support these tests.
 * This is version 1.1.0.
 * The test here was written in Python with Pytest and has 12 different sets of test data that cover many different scenarios using the mentioned features.
