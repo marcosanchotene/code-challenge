@@ -2,6 +2,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotVisibleException
 from selenium.common.exceptions import ElementClickInterceptedException
 from pages.search_results_page import SearchResultsPage
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.by import By
 
 
 class MainPage(object):
@@ -22,19 +25,20 @@ class MainPage(object):
         try:
             self.search_input_field_element.click()
         except NoSuchElementException:
-            print("Could not find element with the locator provided.")
+            print("Could not find element {self.search_input_field_element} with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element {self.search_input_field_element} is not visible with the locator provided.")
         except ElementClickInterceptedException:
-            print("Element with locator provided could not be clicked.")
+            print("Element {self.search_input_field_element} could not be clicked with locator provided.")
 
     def type_location_in_search_input_field(self, location):
         try:
+            self.search_input_field_element.clear()
             self.search_input_field_element.send_keys(location)
         except NoSuchElementException:
             print("Could not find element with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element is not visible with the locator provided.")
 
     def click_on_check_in_calendar(self):
         try:
@@ -42,9 +46,9 @@ class MainPage(object):
         except NoSuchElementException:
             print("Could not find element with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element is not visible with the locator provided.")
         except ElementClickInterceptedException:
-            print("Element with locator provided could not be clicked.")
+            print("Element could not be clicked with locator provided.")
 
     def select_check_in_date(self, date):
         try:
@@ -53,18 +57,21 @@ class MainPage(object):
                 date_test = self.driver.find_elements_by_xpath(
                     self.check_in_or_check_out_date_generic_xpath.format(date))
                 if date_test:
-                    check_in_date_element = self.driver.find_element_by_xpath(
-                        self.check_in_or_check_out_date_generic_xpath.format(date))
+                    check_in_date_element = WebDriverWait(self.driver, 20).until(
+                        expected_conditions.element_to_be_clickable((
+                            By.XPATH, self.check_in_or_check_out_date_generic_xpath.format(date))))
                     check_in_date_element.click()
                 else:
-                    next_calendar_arrow_element = self.driver.find_element_by_xpath(self.next_calendar_arrow_xpath)
+                    next_calendar_arrow_element = WebDriverWait(self.driver, 20).until(
+                        expected_conditions.element_to_be_clickable((
+                            By.XPATH, self.next_calendar_arrow_xpath)))
                     next_calendar_arrow_element.click()
         except NoSuchElementException:
             print("Could not find element with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element is not visible with the locator provided.")
         except ElementClickInterceptedException:
-            print("Element with locator provided could not be clicked.")
+            print("Element could not be clicked with locator provided.")
 
     def select_check_out_date(self, date):
         try:
@@ -73,18 +80,21 @@ class MainPage(object):
                 date_test = self.driver.find_elements_by_xpath(
                     self.check_in_or_check_out_date_generic_xpath.format(date))
                 if date_test:
-                    check_out_date_element = self.driver.find_element_by_xpath(
-                        self.check_in_or_check_out_date_generic_xpath.format(date))
+                    check_out_date_element = WebDriverWait(self.driver, 20).until(
+                        expected_conditions.element_to_be_clickable((
+                            By.XPATH, self.check_in_or_check_out_date_generic_xpath.format(date))))
                     check_out_date_element.click()
                 else:
-                    next_calendar_arrow_element = self.driver.find_element_by_xpath(self.next_calendar_arrow_xpath)
+                    next_calendar_arrow_element = WebDriverWait(self.driver, 20).until(
+                        expected_conditions.element_to_be_clickable((
+                            By.XPATH, self.next_calendar_arrow_xpath)))
                     next_calendar_arrow_element.click()
         except NoSuchElementException:
             print("Could not find element with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element is not visible with the locator provided.")
         except ElementClickInterceptedException:
-            print("Element with locator provided could not be clicked.")
+            print("Element could not be clicked with locator provided.")
 
     def click_on_search_button(self):
         try:
@@ -94,7 +104,7 @@ class MainPage(object):
         except NoSuchElementException:
             print("Could not find element with the locator provided.")
         except ElementNotVisibleException:
-            print("Element with the locator provided is not visible.")
+            print("Element is not visible with the locator provided.")
         except ElementClickInterceptedException:
-            print("Element with locator provided could not be clicked.")
+            print("Element could not be clicked with locator provided.")
 
