@@ -16,8 +16,4 @@
 * You must have Python, Pytest and Selenium installed. 
 * This test automation uses Chrome browser so you need to have the latest Selenium Chromedriver installed also.
 * The test data (in ..resources\test_data.py) must be configured to use future check-in and check-out dates. Currently the tests will not pass if dates before the current date are used.
-* To run the tests you can simply use your IDE runner or type pytest on the project root folder. 
-
-### Who do I talk to? ###
-
-* Marco Sanchotene
+* To run the tests you can simply use your IDE runner or type pytest on the project root folder.
